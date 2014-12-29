@@ -411,36 +411,60 @@
                                 </div>
                                 </form>
                             </div>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td style="text-align:right"></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align:right"></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td valign="top">
-                                        
-                                    </td>
-                                </tr>
-                            </table>
+                            <div class="">
+                                Extrude:
+                                <form class="form-inline">
+                                <div class="row padtop">
+                                  <div class="col-xs-6">
+                                  <div class="form-group-sm">
+                                    <label class="sr-only" for="xy_velocity">Amount (in mm/min)</label>
+                                    <div class="input-group jograte">
+                                      <div class="input-group-addon jograte">Length</div>
 
-                            <button id="extrude" onclick="extrude(event)" class="btn btn-default btn-xs">Extrude</button>
-                            <button id="reverse" onclick="extrude(event)" class="btn btn-default btn-xs">Reverse</button><br>
-                            <input type="text" id="extrude_length" value=5 size=3 style="width:35px">
-                            mm @
-                            <input type="text" id="extrude_velocity" value=100 size=3 style="width:40px">
-                            mm/min
+                                        <input type="text" class="form-control jograte" id="extrude_length" value=5 size=3>
+                                      
+                                      <div class="input-group-addon jograte">mm</div>
+                                      </div>
+
+                                  </div>
+                                  </div>
+                                  
+                                  <div class="col-xs-6">
+                                  <div class="form-group-sm">
+                                    <label class="sr-only" for="xy_velocity">Amount (in mm/min)</label>
+                                    <div class="input-group jograte">
+                                      <div class="input-group-addon jograte">Rate</div>
+
+                                        <input type="text" class="form-control jograte" id="extrude_velocity" value=100 size=3>
+                                      
+                                      <div class="input-group-addon jograte">mm/min</div>
+                                      </div>
+
+                                  </div>
+                                  </div>
+
+                                </div>
+                                </form>
+                            </div>
+                            <div class="">
+                                <form class="form-inline">
+                                <div class="row padtop">
+                                  <div class="col-xs-3">
+                                    <button id="extrude" onclick="extrude(event)" class="btn btn-default btn-sm">Extrude</button>
+                                  </div>
+                                  
+                                  <div class="col-xs-3">
+                                    <button id="reverse" onclick="extrude(event)" class="btn btn-default btn-sm">Reverse</button><br>
+                                  </div>
+
+                                </div>
+                                </form>
+                            </div>
+
+
+                            
+                            
+
                             
                         </div>
                     </div>
@@ -451,7 +475,7 @@
                             <h3 class="panel-title">Motion Control</h3>
                         </div>
                         <div class="panel-body">
-                            <button id="motors_off" onclick="motorsOff(event)">Motors Off</button>
+                            <button id="motors_off" onclick="motorsOff(event)" class="btn btn-default btn-sm">Motors Off</button>
                         </div>
                     </div>
                 </div>
