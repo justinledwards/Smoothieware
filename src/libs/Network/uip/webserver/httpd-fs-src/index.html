@@ -527,7 +527,42 @@
                             <h3 class="panel-title">Print Files</h3>
                         </div>
                         <div class="panel-body">
-                            <div id="result"></div>
+                            <script>
+                            // Attach a submit handler to the form
+                            $( "#commandForm" ).submit(function( event ) {
+                            // Stop form from submitting normally
+                            event.preventDefault();
+                            // Get some values from elements on the page:
+                            var $form = $( this );
+                            command = $form.find( "input[name='commandText']" ).val();
+                            command += "\n";
+                            url = $form.attr( "action" );
+                            // Send the data using post
+                            var posting = $.post( url, command );
+                            // Put the results in a div
+                            posting.done(function( data ) {
+                            $( "#result" ).empty();
+                            $.each(data.split('\n'), function(index) {
+                            $( "#result" ).append( this + '<br/>' );
+                            });
+                            });
+                            });
+                            </script>
+                            <h2> Upload File </h2>
+                            <h3>Uploading file(s)</h3>
+                            <output id="list"></output>
+                            <div id="progress"></div>
+                            <div id="uploadresult"></div>
+                            <script>
+                            document.getElementById('files').addEventListener('change', handleFileSelect, false);
+                            </script>
+                            <h2>Printable File list <button id="refreshFiles" onclick="refreshFiles()">Refresh</button> </h2>
+                            <br/>
+                            <table id="fileList">
+                            </table>
+                            <button id="progress" onclick="runCommand('progress', false)">Progress</button>
+                            <button id="abort" onclick="runCommand('abort', false)">Abort</button>
+
                             <br />&nbsp;
                         </div>
                         <div class="panel-footer ">
@@ -537,12 +572,12 @@
                                   
                                   <div class="col-xs-4">
                                   <div class="form-group-sm">
-                                    <label class="sr-only" for="xy_velocity">Command to run</label>
+                                    <label class="sr-only" for="xy_velocity">Upload Files</label>
                                     <div class="input-group jograte">
                                       <div class="input-group-addon jograte">Upload file</div>
                                       
 
-                                        <input type="text" class="form-control jograte" name="commandText" placeholder="smoothie-case.gcode">
+                                        <input type="file" id="files" name="files[]" onchange="upload();" class="form-control jograte" >
                                       
                                       
                                       </div>
@@ -566,42 +601,6 @@
         
         <!-- the result of the command will be rendered inside this div -->
         
-        <script>
-        // Attach a submit handler to the form
-        $( "#commandForm" ).submit(function( event ) {
-        // Stop form from submitting normally
-        event.preventDefault();
-        // Get some values from elements on the page:
-        var $form = $( this );
-        command = $form.find( "input[name='commandText']" ).val();
-        command += "\n";
-        url = $form.attr( "action" );
-        // Send the data using post
-        var posting = $.post( url, command );
-        // Put the results in a div
-        posting.done(function( data ) {
-        $( "#result" ).empty();
-        $.each(data.split('\n'), function(index) {
-        $( "#result" ).append( this + '<br/>' );
-        });
-        });
-        });
-        </script>
-        <h2> Upload File </h2>
-        <input type="file" id="files" name="files[]" onchange="upload();">
-        <h3>Uploading file(s)</h3>
-        <output id="list"></output>
-        <div id="progress"></div>
-        <div id="uploadresult"></div>
-        <script>
-        document.getElementById('files').addEventListener('change', handleFileSelect, false);
-        </script>
-        <h2>Printable File list <button id="refreshFiles" onclick="refreshFiles()">Refresh</button> </h2>
-        <br/>
-        <table id="fileList">
-        </table>
-        <button id="progress" onclick="runCommand('progress', false)">Progress</button>
-        <button id="abort" onclick="runCommand('abort', false)">Abort</button>
-        </div>
+        
     </body>
 </html>
